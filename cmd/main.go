@@ -1,4 +1,14 @@
 package cmd
 
-//TIP See GoLand help at <a href="https://www.jetbrains.com/help/go/">jetbrains.com/help/go/</a>.
-// Also, you can try interactive lessons for GoLand by selecting 'Help | Learn IDE Features' from the main menu.
+import (
+	"fmt"
+	"github.com/WizardOfCodes442/go-hd-wallet/pkg/wallet"
+)
+
+func main() {
+	mnemonic, _ := wallet.GenerateMnemonic(12) // BIP-39 mnemonic
+	fmt.Println("Generated Mnemonic:", mnemonic)
+
+	masterKey, _ := wallet.GenerateMasterKey(mnemonic, "")
+	fmt.Println("Master Key:", masterKey)
+}
