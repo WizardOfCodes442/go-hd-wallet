@@ -1,4 +1,4 @@
-package cmd
+package main
 
 import (
 	"fmt"
@@ -11,4 +11,10 @@ func main() {
 
 	masterKey, _ := wallet.GenerateMasterKey(mnemonic, "")
 	fmt.Println("Master Key:", masterKey)
+
+	publicKey := wallet.GetPublicKey(masterKey)
+	fmt.Println("Public Key : ", publicKey)
+
+	privateKey, _ := wallet.GetPrivateKey(masterKey)
+	fmt.Println("Private Key:", privateKey)
 }

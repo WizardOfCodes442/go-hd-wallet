@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"
+	"log"
 
 	"github.com/btcsuite/btcd/btcutil/hdkeychain"
 	"github.com/btcsuite/btcd/chaincfg"
@@ -34,6 +35,15 @@ func GenerateMnemonic(numWords int) (string, error) {
 	}
 
 	return mnemonic, nil
+}
+
+// GetPublicKey extracts the public key from an HD extended key.
+func GetPublicKey(masterKey *hdkeychain.ExtendedKey) string {
+	pubKey, err := masterKey.Neuter()
+	if err != nil {
+		log.Fatalf("Failed to get public key: %v", err)
+	}
+	return pubKey.String()
 }
 
 // GenerateMasterKey creates a master key from a mnemonic and optional passphrase.
